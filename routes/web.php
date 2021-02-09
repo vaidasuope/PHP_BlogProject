@@ -18,6 +18,8 @@ Route::get('/', 'BlogController@index');
 
 Route::get('/add-post','BlogController@addPost');
 
+Route::post('/store', 'BlogController@store');
+
 //cia apsirasom route'a i users puslapi
 
 //Route::get('/users', 'UserController@users');
