@@ -17,7 +17,7 @@
                     <a class="nav-link" href="/add-post">New post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/add-category">New categorie</a>
+                    <a class="nav-link" href="/add-category">New category</a>
                 </li>
             </ul>
         </div>
