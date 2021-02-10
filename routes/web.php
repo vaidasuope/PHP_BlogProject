@@ -30,6 +30,8 @@ Route::get('/oneCategory/{category}','CategoryController@selectOne');
 //visas straipsnis is vienos kategorijos page pasirinkto
 Route::get('/oneCategory/post/{post}', 'BlogController@showAllPost');
 
+Route::get('/edit/post/{post}', 'BlogController@editPost');
+
 
 
 //Route::get('/categories/{category}','CategoryController@selectOne');

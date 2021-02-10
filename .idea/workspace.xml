@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5590ffb9-d5fb-44c4-8385-2cb792fac10a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/blog_theme/pages/categories.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/blog_theme/pages/post.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/blog_theme/pages/selected-category.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BlogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog_theme/_partials/errors.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog_theme/_partials/errors.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog_theme/_partials/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog_theme/_partials/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog_theme/_partials/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog_theme/_partials/head.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog_theme/_partials/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog_theme/_partials/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog_theme/_partials/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog_theme/_partials/nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog_theme/pages/add-post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog_theme/pages/add-post.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog_theme/pages/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog_theme/pages/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog_theme/pages/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog_theme/pages/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,7 +164,9 @@
       <workItem from="1612857544082" duration="74000" />
       <workItem from="1612860434576" duration="36710000" />
       <workItem from="1612947618358" duration="794000" />
-      <workItem from="1612949095754" duration="5338000" />
+      <workItem from="1612949095754" duration="5615000" />
+      <workItem from="1612955491589" duration="298000" />
+      <workItem from="1612956036423" duration="321000" />
     </task>
     <servers />
   </component>

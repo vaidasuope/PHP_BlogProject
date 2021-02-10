@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row justify-content-center mb-5">
-        <h2>Redaguoti įrašą</h2>
+        <h2>Edit your post</h2>
 
         @include('blog_theme/_partials/errors')
     </div>
@@ -12,12 +12,12 @@
         {{csrf_field()}}
         {{method_field('PATCH')}}
         <div class="form-group">
-            <label for="title">Pavadinimas</label>
+            <label for="title">Title</label>
             <input type="text" value="{{$p->title}}" class="form-control" name="title" id="title"
-                   placeholder="Įrašo pvadinimas">
+                   placeholder="Post title">
         </div>
         <div class="form-group">
-            <label for="category">Kategorija</label>
+            <label for="category">Category</label>
             <select class="form-control" id="category" name="category">
                 <option value="" disabled selected>{{$p->category}}</option>
                 @foreach($options as $option)
@@ -32,11 +32,12 @@
             <textarea class="form-control" id="content" name="body" rows="5">{{$p->body}}</textarea>
         </div>
         <div class="form-group">
-            <label for="upload">Pasirinkti paveikslėlį:</label>
+            <label for="upload">Add an image:</label>
             <input type="file" class="form-control" id="upload">
         </div>
         <div class="form-group d-flex justify-content-center m-5">
-            <button type="submit" name="submit" class="btn btn-secondary rounded">Saugoti</button>
+            <button type="submit" name="submit" class="btn btn-secondary rounded">Submit</button>
+            <a href="/post/{{$p->id}}" class="btn btn-secondary ml-2 rounded">Cancel</a>
         </div>
     </form>
     @endforeach
