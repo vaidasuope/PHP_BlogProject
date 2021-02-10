@@ -19,7 +19,8 @@ class BlogController extends Controller
 
         $posts = DB::table('posts')
             ->join('categories', 'posts.category', '=', 'categories.id')
-            ->select('posts.id', 'posts.title', 'posts.body', 'posts.created_at', 'categories.category')
+            ->select('posts.id', 'posts.title', 'posts.body', 'posts.created_at', 'categories.category', 'categories.id')
+            ->orderByDesc('posts.created_at')
             ->paginate(5);
 
 

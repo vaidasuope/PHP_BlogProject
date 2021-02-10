@@ -17,6 +17,10 @@
         @endforeach
         </tbody>
     </table>
+    <div class="row">
+        <p id="notice" class="font-italic m-0 mb-2">Couldn't find the needed category? <a href="/add-category">Click here</a></p>
+    </div>
+
 
 
 {{--    @if(count($items)>0)--}}

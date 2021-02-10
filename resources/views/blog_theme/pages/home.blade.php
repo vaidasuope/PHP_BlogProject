@@ -17,7 +17,7 @@
 {{--                       href="/delete/{{$post->id}}">Delete</a>--}}
                 <p class="post-meta">Posted by
                     <a href="#">User</a>
-                    {{$post->created_at}}. Category: {{$post->category}}.</p>
+                    {{$post->created_at}}. Category: <a name="linkas" href="/oneCategory/{{$post->id}}">{{$post->category}}.</a></p>
             </div>
             <hr>
     @endforeach
