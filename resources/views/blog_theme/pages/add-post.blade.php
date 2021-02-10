@@ -2,36 +2,37 @@
 
 @section('content')
     <div class="row justify-content-center mb-5">
-        <h2>Naujas įrašas</h2>
-
+        <h2>Create a New Post</h2>
+    </div>
+    <div class="row">
         @include('blog_theme/_partials/errors')
     </div>
-{{--    apsirasom butinai action - kur nukreips po paspaudimo--}}
+{{--    apsirasom butinai action - kur nukreips po paspaudimo ir jis turi buti aprasytas routes--}}
     <form action="/store" method="post">
         {{csrf_field()}}
         <div class="form-group">
-            <label for="title">Pavadinimas</label>
-            <input type="text" class="form-control" name="title" id="title" placeholder="Įrašo pvadinimas">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Post title">
         </div>
         <div class="form-group">
-            <label for="category">Kategorija</label>
+            <label for="category">Category</label>
             <select class="form-control" id="category" name="category">
-                <option value="" disabled selected>Pasirinkite kategoriją</option>
+                <option value="" disabled selected>--Choose category--</option>
                 @foreach($options as $option)
-                    <option value={{$option}}>{{$option}}</option>
+                    <option value={{$option->id}}>{{$option->category}}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="content">Jūsų įrašas:</label>
+            <label for="content">Your thoughts:</label>
             <textarea class="form-control" id="content" name="body" rows="5"></textarea>
         </div>
         <div class="form-group">
-            <label for="upload">Pasirinkti paveikslėlį:</label>
+            <label for="upload">Add an image:</label>
             <input type="file" class="form-control" id="upload">
         </div>
         <div class="form-group d-flex justify-content-center m-5">
-            <button type="submit" name="submit" class="btn btn-secondary rounded">Paskelbti</button>
+            <button type="submit" name="submit" class="btn btn-secondary rounded">Publish</button>
         </div>
     </form>
 

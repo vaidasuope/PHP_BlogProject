@@ -1,0 +1,34 @@
+@extends('blog_theme/main')
+
+@section('content')
+    <div>
+        @foreach($items as $item)
+            <div class="post-preview">
+                <a href="post/{{$item->id}}">
+                    <h2 class="post-title">{{$item->title}}</h2>
+                    <h3 class="post-subtitle">
+                        {{Str::limit($item->body, 250, '...')}}
+                    </h3>
+                </a>
+                <a href="post/{{$item->id}}" class="float-right btn btn-success text-light rounded">Read more</a>
+                <br/>
+                {{--                    <a href="/edit/{{$post->id}}">Edit</a>--}}
+                {{--                    <a onclick="return confirm('Are you really want to delete it?')"--}}
+                {{--                       href="/delete/{{$post->id}}">Delete</a>--}}
+                <p class="post-meta">Posted by
+                    <a href="#">User</a>
+                    {{$item->created_at}}. Category: {{$item->category}}.</p>
+
+
+                {{--            <ul>--}}
+                {{--                <li>{{$item->id}}</li>--}}
+                {{--                <li>{{$item->title}}</li>--}}
+                {{--            </ul>--}}
+                @endforeach
+                {{--                Pagination cia turim uzdeti--}}
+                <div class="clearfix">
+                    {{$items->links()}}
+                </div>
+            </div>
+    </div>
+@endsection
