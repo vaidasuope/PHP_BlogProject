@@ -82,6 +82,10 @@ img::-moz-selection {
   background: transparent;
 }
 
+#notice {
+  font-size: 13px;
+}
+
 #mainNav {
   position: absolute;
   border-bottom: 1px solid #e9ecef;
