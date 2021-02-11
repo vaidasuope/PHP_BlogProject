@@ -12,18 +12,10 @@
                 </a>
                 <a href="post/{{$item->id}}" class="float-right btn btn-success text-light rounded">Read more</a>
                 <br/>
-                {{--                    <a href="/edit/{{$post->id}}">Edit</a>--}}
-                {{--                    <a onclick="return confirm('Are you really want to delete it?')"--}}
-                {{--                       href="/delete/{{$post->id}}">Delete</a>--}}
                 <p class="post-meta">Posted by
-                    <a href="#">User</a>
+                    <a href="#">{{$item->name}}</a>
                     {{$item->created_at}}. Category: {{$item->category}}.</p>
 
-
-                {{--            <ul>--}}
-                {{--                <li>{{$item->id}}</li>--}}
-                {{--                <li>{{$item->title}}</li>--}}
-                {{--            </ul>--}}
                 @endforeach
                 {{--                Pagination cia turim uzdeti--}}
                 <div class="clearfix">

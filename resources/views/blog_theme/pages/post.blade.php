@@ -1,6 +1,13 @@
 @extends('blog_theme/main')
 
 @section('content')
+
+    @if(session()->has('message'))
+        <div class="alert {{session('alert') ?? 'alert-info'}}">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-md">
             <h2>{{$post->title}}</h2>

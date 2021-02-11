@@ -6,11 +6,17 @@ use App\Category;
 use Illuminate\Http\Request;
 //turim ussiusinti modeli butinai
 use App\Post;
+use Illuminate\Support\Facades\Auth;
+use Gate;
 use Illuminate\Support\Facades\DB;
 use Psy\Util\Str;
 
 class BlogController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth',['except'=>['index','showAllPost']]);
+    }
+
     //sitas metodas grazina pradini puslapi
     public function index(){
 
@@ -18,12 +24,14 @@ class BlogController extends Controller
 //        $posts = Post::paginate(5);
 
         $posts = DB::table('posts')
-            ->join('categories', 'posts.category', '=', 'categories.id')
-            ->select('posts.id', 'posts.title', 'posts.body', 'posts.created_at', 'categories.category', 'categories.id')
-            ->orderByDesc('posts.created_at')
+            ->join('categories', 'posts.category_id', '=', 'categories.id')
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->select('posts.id', 'posts.title', 'posts.category_id', 'posts.body', 'posts.category_id',
+                'users.name','posts.created_at', 'categories.category')
             ->paginate(5);
 
 
+//        dd($posts);
         return view('blog_theme.pages.home',compact('posts'));
     }
 
@@ -43,14 +51,16 @@ class BlogController extends Controller
             'category' => 'required'
         ]);
 
+//        dd(Auth::id());
+
         //kreipiames i modeli ir irasom i database
         Post::create([
             //key title ka gauname is formos
             'title'=>request('title'),
-            'category'=>request('category'),
-            'body'=>request('body')
+            'category_id'=>request('category'),
+            'body'=>request('body'),
+            'user_id'=>Auth::id()
         ]);
-
         return redirect('/');
     }
 
@@ -60,25 +70,32 @@ class BlogController extends Controller
         return view ('blog_theme/pages/post', compact('post'));
     }
 
-    public function editPost (Post $post) {
+    public function editPost (Post $post)
+    {
 
-        $options = Category::all();
+        if (Gate::allows('update', $post)) {
 
-        $post = DB::table('posts')
-            ->join('categories', 'posts.category', '=', 'categories.id')
-            ->select('posts.id', 'posts.title', 'posts.body', 'posts.created_at', 'categories.category')
-            ->where('posts.id', $post->id)
-            ->get();
+            $options = Category::all();
+
+            $post = DB::table('posts')
+                ->join('categories', 'posts.category_id', '=', 'categories.id')
+                ->select('posts.id', 'posts.title', 'posts.category_id', 'posts.body', 'posts.created_at','categories.category')
+                ->where('posts.id', $post->id)
+                ->get();
 
 
-        return view ('blog_theme/pages/edit', compact('post','options'));
+            return view('blog_theme/pages/edit', compact('post', 'options'));
+        }
+            return redirect()->back()->with(['message' => 'You can edit only your posts!', 'alert' => 'alert-danger']);
+
     }
+
 
     //request reikalingas norint duomenis gauti is formos
 
     public function storeUpdate(Request $request, Post $post) {
 
-        Post::where('id',$post->id)->update($request->only(['title','category','body']));
+        Post::where('id',$post->id)->update($request->only(['title','category_id','body']));
 
         //nukreipia po issaugojimo i posta pilna
         return redirect('/post/'.$post->id);
@@ -87,8 +104,12 @@ class BlogController extends Controller
 
     public function delete(Post $post){
 
-        $post->delete();
+        if (Gate::allows('update', $post)) {
 
-        return redirect('/');
+            $post->delete();
+
+            return redirect('/');
+        }
+        return redirect()->back()->with(['message' => 'You can delete only your posts!', 'alert' => 'alert-danger']);
     }
 }

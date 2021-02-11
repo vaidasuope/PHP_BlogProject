@@ -44,8 +44,10 @@ class CategoryController extends Controller
     public function selectOne (Category $category){
 
         $items= DB::table('categories')
-            ->join('posts', 'categories.id', '=', 'posts.category')
-            ->select('posts.id', 'posts.title', 'posts.body', 'posts.created_at', 'categories.category')->where('categories.id',$category->id)
+            ->join('posts', 'categories.id', '=', 'posts.category_id')
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->select('posts.id', 'posts.title', 'posts.body', 'posts.created_at', 'categories.category', 'users.name')
+            ->where('categories.id',$category->id)
             ->paginate(3);
 
 //        return redirect('/categories',compact('items'));

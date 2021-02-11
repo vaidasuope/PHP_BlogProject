@@ -16,8 +16,8 @@
 {{--                    <a onclick="return confirm('Are you really want to delete it?')"--}}
 {{--                       href="/delete/{{$post->id}}">Delete</a>--}}
                 <p class="post-meta">Posted by
-                    <a href="#">User</a>
-                    {{$post->created_at}}. Category: <a name="linkas" href="/oneCategory/{{$post->id}}">{{$post->category}}.</a></p>
+                    <a href="#">{{$post->name}}</a>
+                    on {{$post->created_at}}. Category: <a name="linkas" href="/oneCategory/{{$post->category_id}}">{{$post->category}}.</a></p>
             </div>
             <hr>
     @endforeach

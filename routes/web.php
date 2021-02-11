@@ -36,10 +36,12 @@ Route::get('/edit/post/{post}', 'BlogController@editPost');
 
 //Route::get('/categories/{category}','CategoryController@selectOne');
 //Route::get('/selected-category','CategoryController@selectOne');
-
 //blade view faila reikia susikurti
 
-
 //cia apsirasom route'a i users puslapi
-
 //Route::get('/users', 'UserController@users');
+
+Auth::routes();
+
+Route::get('/logout', "\App\Http\Controllers\Auth\LoginController@logout");
+

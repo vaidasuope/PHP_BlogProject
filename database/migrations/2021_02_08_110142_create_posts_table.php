@@ -17,8 +17,9 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
-            $table->string('category');
+            $table->integer('category_id');
             $table->string("img")->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
