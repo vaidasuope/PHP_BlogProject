@@ -10,15 +10,21 @@
                         {{Str::limit($post->body, 250, '...')}}
                     </h3>
                 </a>
+{{--                <div>--}}
+{{--                    <img src="{{$post->img}}" style="height: 150px">--}}
+{{--                </div>--}}
+{{--                <div>--}}
+{{--                    <img src="{{$post->img}}">--}}
+{{--                </div>--}}
                 <a href="post/{{$post->id}}" class="float-right btn btn-success text-light rounded">Read more</a>
                 <br/>
 {{--                    <a href="/edit/{{$post->id}}">Edit</a>--}}
 {{--                    <a onclick="return confirm('Are you really want to delete it?')"--}}
 {{--                       href="/delete/{{$post->id}}">Delete</a>--}}
                 <p class="post-meta">Posted by
-                    <a href="#">{{$post->name}}</a>
+                    <a href="/user/{{$post->user_id}}">{{$post->name}}</a>
                     on {{$post->created_at}}. Category: <a name="linkas" href="/oneCategory/{{$post->category_id}}">{{$post->category}}.</a></p>
-            </div>
+                </div>
             <hr>
     @endforeach
     <!-- Pager -->

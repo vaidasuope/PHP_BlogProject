@@ -8,7 +8,7 @@
         @include('blog_theme/_partials/errors')
     </div>
 {{--    apsirasom butinai action - kur nukreips po paspaudimo ir jis turi buti aprasytas routes--}}
-    <form action="/store" method="post">
+    <form action="/store" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
             <label for="title">Title</label>
@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <label for="upload">Add an image:</label>
-            <input type="file" class="form-control" id="upload">
+            <input type="file" class="form-control" id="upload" name="img">
         </div>
         <div class="form-group d-flex justify-content-center m-5">
             <button type="submit" name="submit" class="btn btn-secondary rounded">Publish</button>

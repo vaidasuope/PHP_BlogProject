@@ -8,7 +8,7 @@
     </div>
     {{--    apsirasom butinai action - kur nukreips po paspaudimo ir jis turi buti aprasytas routes--}}
     @foreach($post as $p)
-    <form action="/storeupdate/{{$p->id}}" method="post">
+    <form action="/storeupdate/{{$p->id}}" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
         {{method_field('PATCH')}}
         <div class="form-group">
@@ -29,12 +29,13 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="content">Jūsų įrašas:</label>
+            <label for="content">Your post:</label>
             <textarea class="form-control" id="content" name="body" rows="5">{{$p->body}}</textarea>
         </div>
         <div class="form-group">
             <label for="upload">Add an image:</label>
-            <input type="file" class="form-control" id="upload">
+            <p><img src="/{{$p->img}}"></p>
+            <input type="file" class="form-control" id="upload" name="img" value="{{$p->img}}">
         </div>
         <div class="form-group d-flex justify-content-center m-5">
             <button type="submit" name="submit" class="btn btn-secondary rounded">Submit</button>

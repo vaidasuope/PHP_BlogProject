@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Gate;
 use Illuminate\Support\Facades\DB;
 use Psy\Util\Str;
+use File;
 
 class BlogController extends Controller
 {
@@ -26,8 +27,9 @@ class BlogController extends Controller
         $posts = DB::table('posts')
             ->join('categories', 'posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.id', 'posts.title', 'posts.category_id', 'posts.body', 'posts.category_id',
-                'users.name','posts.created_at', 'categories.category')
+            ->select('posts.id', 'posts.title', 'posts.user_id','posts.category_id', 'posts.body', 'posts.category_id',
+                'users.name','posts.created_at','posts.img', 'categories.category')
+            ->orderBy('posts.created_at', 'DESC')
             ->paginate(5);
 
 
@@ -48,8 +50,12 @@ class BlogController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|unique:posts|max:255',
             'body' => 'required',
-            'category' => 'required'
+            'category' => 'required',
+            'img' => 'mimes:jpeg, jpg, png, gif|required|max:10000'
         ]);
+
+        $path = $request->file('img')->store('public/image');
+        $filename = str_replace('public/',"", $path);
 
 //        dd(Auth::id());
 
@@ -59,13 +65,13 @@ class BlogController extends Controller
             'title'=>request('title'),
             'category_id'=>request('category'),
             'body'=>request('body'),
+            'img' => $filename,
             'user_id'=>Auth::id()
         ]);
         return redirect('/');
     }
 
     public function showAllPost (Post $post){
-
 
         return view ('blog_theme/pages/post', compact('post'));
     }
@@ -79,7 +85,7 @@ class BlogController extends Controller
 
             $post = DB::table('posts')
                 ->join('categories', 'posts.category_id', '=', 'categories.id')
-                ->select('posts.id', 'posts.title', 'posts.category_id', 'posts.body', 'posts.created_at','categories.category')
+                ->select('posts.id', 'posts.title', 'posts.img', 'posts.category_id', 'posts.body', 'posts.created_at','categories.category')
                 ->where('posts.id', $post->id)
                 ->get();
 
@@ -95,7 +101,15 @@ class BlogController extends Controller
 
     public function storeUpdate(Request $request, Post $post) {
 
+        if ($request->file()){
+            File::delete(storage_path('app/public/'.$post->img));
+            $path = $request->file('img')->store('public/image');
+            $filename = str_replace('public/','', $path);
+            Post::where('id', $post->id)->update(['img'=>$filename]);
+
+        }
         Post::where('id',$post->id)->update($request->only(['title','category_id','body']));
+
 
         //nukreipia po issaugojimo i posta pilna
         return redirect('/post/'.$post->id);
@@ -104,7 +118,7 @@ class BlogController extends Controller
 
     public function delete(Post $post){
 
-        if (Gate::allows('update', $post)) {
+        if (Gate::allows('delete', $post)) {
 
             $post->delete();
 
