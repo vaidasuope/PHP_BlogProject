@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\User;
 use Illuminate\Http\Request;
 //turim ussiusinti modeli butinai
 use App\Post;
@@ -72,6 +73,8 @@ class BlogController extends Controller
     }
 
     public function showAllPost (Post $post){
+
+//        dd($post->comments);
 
         return view ('blog_theme/pages/post', compact('post'));
     }

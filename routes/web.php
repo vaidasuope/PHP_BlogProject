@@ -34,6 +34,8 @@ Route::get('/edit/post/{post}', 'BlogController@editPost');
 
 Route::get('/user/{user}','CategoryController@selectUser');
 
+Route::post('/addComment', 'CommentController@storeComment');
+
 
 
 //Route::get('/categories/{category}','CategoryController@selectOne');
